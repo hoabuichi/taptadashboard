@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Tapta Dashboard</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="payment_tab_description">Quick Payment Tab</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
