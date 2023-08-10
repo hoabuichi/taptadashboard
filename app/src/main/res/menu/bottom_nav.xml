@@ -2,17 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Home"
-        android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:title="Keypad"
+        android:id="@+id/keypad"
+        android:icon="@drawable/calculator_icon"/>
     <item
-        android:title="Profile"
-        android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Transactions"
+        android:id="@+id/transactions"
+        android:icon="@drawable/transactions_icon"
         />
     <item
-        android:title="Settings"
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Analytics"
+        android:id="@+id/analytics"
+        android:icon="@drawable/analytics_icon"
+        />
+    <item
+        android:title="Products"
+        android:id="@+id/products"
+        android:icon="@drawable/products_icon"
+        />
+    <item
+        android:title="Menu"
+        android:id="@+id/menu"
+        android:icon="@drawable/menu_icon"
         />
 </menu>
