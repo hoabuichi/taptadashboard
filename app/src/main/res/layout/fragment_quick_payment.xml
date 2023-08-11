@@ -67,6 +67,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:includeFontPadding="false"
                 android:textStyle="bold"
                 android:textSize="8sp"
                 android:textColor="@color/white"
@@ -77,25 +78,26 @@
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/btn_primary_background"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingVertical="4dp"
-            android:paddingHorizontal="16dp"
-            android:background="@drawable/btn_primary_background"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/btn_next_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/next"
+                android:textColor="@color/white"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="@string/next" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
