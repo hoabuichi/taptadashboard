@@ -7,6 +7,7 @@
     android:paddingEnd="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cart_holder"
         android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
