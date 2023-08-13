@@ -1,9 +1,11 @@
-package com.example.taptadashboard.payment
+package com.example.taptadashboard.payment.Adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.taptadashboard.payment.InvoicePayment
+import com.example.taptadashboard.payment.QuickPayment
 
 class PaymentPageAdapter(
     fragmentManager: FragmentManager,

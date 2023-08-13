@@ -5,42 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.taptadashboard.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taptadashboard.databinding.FragmentQuickPaymentBinding
+import com.example.taptadashboard.payment.Adapter.PriceRecommendationAdapter
 
-/**
- * A simple [Fragment] subclass.
- * Use the [QuickPayment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class QuickPayment : Fragment() {
-    // TODO: Rename and change types of parameters
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding : FragmentQuickPaymentBinding
+    private lateinit var adapter : PriceRecommendationAdapter
+    private lateinit var priceList: ArrayList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quick_payment, container, false)
-    }
+        binding = FragmentQuickPaymentBinding.inflate(inflater, container, false)
+        priceList = arrayListOf<String>()
+        priceList.add("1000 VND")
+        priceList.add("10000 VND")
+        priceList.add("100000 VND")
+        priceList.add("1000000 VND")
+        priceList.add("10000000 VND")
+        priceList.add("100000000 VND")
+        adapter = PriceRecommendationAdapter(priceList = priceList)
+        binding.priceRecommendationList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.priceRecommendationList.adapter = adapter
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QuickPayment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            QuickPayment().apply {
-
-            }
+        return binding.root
     }
 }
