@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.taptadashboard.databinding.FragmentKeypadBinding
-import com.example.taptadashboard.payment.Adapter.PaymentPageAdapter
+import com.example.taptadashboard.payment.adapter.PaymentPageAdapter
 import com.google.android.material.tabs.TabLayout
 
 

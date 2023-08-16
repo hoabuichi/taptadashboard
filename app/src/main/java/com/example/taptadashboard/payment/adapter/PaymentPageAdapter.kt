@@ -1,4 +1,4 @@
-package com.example.taptadashboard.payment.Adapter
+package com.example.taptadashboard.payment.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/tabLayoutContainer"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        app:cardCornerRadius="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:tabIndicatorGravity="stretch"
-            app:tabBackground="@color/tab_light_grey"
-            android:contentDescription="@string/payment_tab_description"
-            app:tabTextAppearance="@style/MyCustomTextAppearance"
-            app:tabSelectedTextAppearance="@style/MyCustomTextAppearanceActive"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabRippleColor="@null"
-            app:tabSelectedTextColor="@color/white"
-            app:tabIndicatorColor="@null"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabMode="fixed" />
-    </com.google.android.material.card.MaterialCardView>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tabLayoutContainer"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabIndicatorGravity="stretch"
+                app:tabBackground="@color/tab_light_grey"
+                android:contentDescription="@string/payment_tab_description"
+                app:tabTextAppearance="@style/MyCustomTextAppearance"
+                app:tabSelectedTextAppearance="@style/MyCustomTextAppearanceActive"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/white"
+                app:tabIndicatorColor="@null"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabMode="fixed" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/payment_pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayoutContainer" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/payment_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayoutContainer" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

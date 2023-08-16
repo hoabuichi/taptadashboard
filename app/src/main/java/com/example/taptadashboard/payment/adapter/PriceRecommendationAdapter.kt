@@ -1,4 +1,4 @@
-package com.example.taptadashboard.payment.Adapter
+package com.example.taptadashboard.payment.adapter
 
 import android.view.LayoutInflater
 import android.view.View
