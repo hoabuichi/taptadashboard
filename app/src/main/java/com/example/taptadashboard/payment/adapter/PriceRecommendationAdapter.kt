@@ -6,19 +6,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptadashboard.R
+import com.example.taptadashboard.databinding.RecyclePriceRecommendationItemBinding
 
 class PriceRecommendationAdapter(private val priceList: ArrayList<String>): RecyclerView.Adapter<PriceRecommendationAdapter.MyViewHolder>() {
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val price: TextView = itemView.findViewById(R.id.item_price_text)
+    class MyViewHolder(private val itemBinding: RecyclePriceRecommendationItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(priceText: String) {
+            itemBinding.itemPriceText.text = priceText
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycle_price_recommendation_item, parent, false)
-        return MyViewHolder(view)
+        val binding = RecyclePriceRecommendationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.price.text = priceList[position]
+        holder.bind(priceList[position])
     }
 
     override fun getItemCount(): Int {
