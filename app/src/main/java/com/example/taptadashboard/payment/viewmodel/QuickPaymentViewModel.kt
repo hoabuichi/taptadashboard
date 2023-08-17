@@ -4,14 +4,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class QuickPaymentViewModel: ViewModel() {
-
+    var keyboardCount: Long = 0
     var currentAmount: String = ""
     var totalAmount: Long = 0
-    private val recommendedBase: ArrayList<Long> = arrayListOf(1000, 10000, 100000, 1000000, 10000000, 100000000)
+    private val recommendedBase: ArrayList<Long> = arrayListOf(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000)
     var recommendedPriceList: ArrayList<Long> = recommendedBase
 
     val currentRecommendedPriceListLiveData: MutableLiveData<ArrayList<Long>> by lazy {
         MutableLiveData<ArrayList<Long>>()
+    }
+
+    // for vibration effect
+    val keyboardCountLiveData: MutableLiveData<Long> by lazy {
+        MutableLiveData<Long>()
     }
 
     val currentAmountLiveData: MutableLiveData<String> by lazy {
@@ -22,13 +27,23 @@ class QuickPaymentViewModel: ViewModel() {
         MutableLiveData<Long>()
     }
 
+
+
     fun onNewKeyboard(number: Int){
+        keyboardCountLiveData.value = ++keyboardCount
         if(currentAmount == "" && (number == 0 || number == 10 || number == 11 )) {
             return
         }
 
+        if(currentAmount != "" && currentAmount.toLong() > 999999999 && number != 11) {
+            return
+        }
+
         if(number == 10) {
-            totalAmount += currentAmount.toInt()
+            if(totalAmount + currentAmount.toLong() > 999999999) {
+                return
+            }
+            totalAmount += currentAmount.toLong()
             currentTotalLiveData.value = totalAmount
             onClearTypingPrice()
             return
@@ -62,7 +77,7 @@ class QuickPaymentViewModel: ViewModel() {
         }
         recommendedPriceList = arrayListOf()
         for(basePrice in recommendedBase) {
-            val tempPrice = basePrice * currentAmount.toInt()
+            val tempPrice = basePrice * currentAmount.toLong()
             if (tempPrice < 1000000000) {
                 recommendedPriceList.add(tempPrice)
             }

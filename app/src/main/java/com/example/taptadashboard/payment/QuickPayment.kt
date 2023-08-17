@@ -1,11 +1,16 @@
 package com.example.taptadashboard.payment
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +39,11 @@ class QuickPayment : Fragment() {
             }
         }
 
+        viewModel.keyboardCountLiveData.observe(viewLifecycleOwner) {
+            vibe()
+        }
+
+        binding.quickTotalPrice.text = viewModel.totalAmount.toString() + " VND"
         viewModel.currentTotalLiveData.observe(viewLifecycleOwner) { newAmount ->
             binding.quickTotalPrice.text = newAmount.toString() + " VND"
         }
@@ -46,5 +56,14 @@ class QuickPayment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun vibe() {
+        val vibrate = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if(Build.VERSION.SDK_INT >= 26) {
+            vibrate.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrate.vibrate(400)
+        }
     }
 }
