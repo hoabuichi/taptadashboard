@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taptadashboard.R
 import com.example.taptadashboard.databinding.RecyclePriceRecommendationItemBinding
 
-class PriceRecommendationAdapter(private val priceList: ArrayList<String>): RecyclerView.Adapter<PriceRecommendationAdapter.MyViewHolder>() {
+class PriceRecommendationAdapter(private val priceList: ArrayList<Long>): RecyclerView.Adapter<PriceRecommendationAdapter.MyViewHolder>() {
     class MyViewHolder(private val itemBinding: RecyclePriceRecommendationItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(priceText: String) {
             itemBinding.itemPriceText.text = priceText
@@ -21,7 +21,7 @@ class PriceRecommendationAdapter(private val priceList: ArrayList<String>): Recy
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(priceList[position])
+        holder.bind(priceList[position].toString())
     }
 
     override fun getItemCount(): Int {

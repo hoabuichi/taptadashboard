@@ -17,7 +17,6 @@ class QuickPayment : Fragment() {
 
     private lateinit var binding : FragmentQuickPaymentBinding
     private lateinit var adapter : PriceRecommendationAdapter
-    private lateinit var priceList: ArrayList<String>
     private val viewModel: QuickPaymentViewModel by viewModels()
 
     override fun onCreateView(
@@ -27,25 +26,25 @@ class QuickPayment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentQuickPaymentBinding.inflate(inflater, container, false)
         binding.quickPayment = viewModel
-        viewModel.currentAmountLiveData.observe(viewLifecycleOwner, Observer<String> { newAmount ->
-            binding.itemPrice.text = newAmount
-        })
-        priceList = arrayListOf<String>()
-        priceList.add("1000 VND")
-        priceList.add("10000 VND")
-        priceList.add("100000 VND")
-        priceList.add("100000 VND")
-        priceList.add("1000000 VND")
-        priceList.add("10000000 VND")
-        priceList.add("100000000 VND")
-        adapter = PriceRecommendationAdapter(priceList = priceList)
+        viewModel.currentAmountLiveData.observe(viewLifecycleOwner) { newAmount ->
+            if (newAmount == "") {
+                binding.itemPrice.text = "0 VND"
+            } else {
+                binding.itemPrice.text = newAmount + " VND"
+            }
+        }
+
+        viewModel.currentTotalLiveData.observe(viewLifecycleOwner) { newAmount ->
+            binding.quickTotalPrice.text = newAmount.toString() + " VND"
+        }
+
+        // recommended price list
         binding.priceRecommendationList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.priceRecommendationList.adapter = adapter
+        viewModel.currentRecommendedPriceListLiveData.observe(viewLifecycleOwner) { newList ->
+            adapter = PriceRecommendationAdapter(priceList = newList)
+            binding.priceRecommendationList.adapter = adapter
+        }
 
-
-//        binding.btnOne.setOnClickListener {
-//            Log.v("Keyboard: ", 1.toString());
-//        }
         return binding.root
     }
 }
