@@ -18,7 +18,7 @@ import com.example.taptadashboard.payment.viewmodel.QuickPaymentViewModel
 import com.example.taptadashboard.utils.formatter
 import java.util.Locale
 
-class QuickPayment : Fragment() {
+class QuickPayment : Fragment(), PriceRecommendationAdapter.OnItemClickListener {
 
     private lateinit var binding : FragmentQuickPaymentBinding
     private lateinit var adapter : PriceRecommendationAdapter
@@ -50,8 +50,10 @@ class QuickPayment : Fragment() {
 
         // recommended price list
         binding.priceRecommendationList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        adapter = PriceRecommendationAdapter(priceList = viewModel.recommendedPriceList, this)
+        binding.priceRecommendationList.adapter = adapter
         viewModel.currentRecommendedPriceListLiveData.observe(viewLifecycleOwner) { newList ->
-            adapter = PriceRecommendationAdapter(priceList = newList)
+            adapter = PriceRecommendationAdapter(priceList = newList, this)
             binding.priceRecommendationList.adapter = adapter
         }
 
@@ -65,5 +67,9 @@ class QuickPayment : Fragment() {
         } else {
             vibrate.vibrate(400)
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        viewModel.onRecommendedPriceClick(position)
     }
 }

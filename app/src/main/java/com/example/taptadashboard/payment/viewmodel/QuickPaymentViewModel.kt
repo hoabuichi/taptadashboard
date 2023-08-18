@@ -8,7 +8,7 @@ class QuickPaymentViewModel: ViewModel() {
     var currentAmount: String = ""
     var totalAmount: Long = 0
     private val recommendedBase: ArrayList<Long> = arrayListOf(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000)
-    var recommendedPriceList: ArrayList<Long> = recommendedBase
+    var recommendedPriceList: ArrayList<Long> = arrayListOf(1000, 10000, 100000, 1000000, 10000000, 100000000)
 
     val currentRecommendedPriceListLiveData: MutableLiveData<ArrayList<Long>> by lazy {
         MutableLiveData<ArrayList<Long>>()
@@ -65,20 +65,24 @@ class QuickPaymentViewModel: ViewModel() {
     fun onClearTypingPrice(){
         currentAmount = ""
         currentAmountLiveData.value =  currentAmount
-        recommendedPriceList = recommendedBase
-        currentRecommendedPriceListLiveData.value = recommendedPriceList
+        updateRecommendedPriceList()
+    }
+
+    fun onRecommendedPriceClick(index: Int) {
+        currentAmount = recommendedPriceList[index].toString()
+        currentAmountLiveData.value =  currentAmount
     }
 
     private fun updateRecommendedPriceList() {
         if(currentAmount == "") {
-            recommendedPriceList = recommendedBase
+            recommendedPriceList = recommendedBase.filter { value -> value >= 1000 } as ArrayList<Long>
             currentRecommendedPriceListLiveData.value = recommendedPriceList
             return
         }
         recommendedPriceList = arrayListOf()
         for(basePrice in recommendedBase) {
             val tempPrice = basePrice * currentAmount.toLong()
-            if (tempPrice < 1000000000) {
+            if (tempPrice in 1000..1000000000) {
                 recommendedPriceList.add(tempPrice)
             }
         }
