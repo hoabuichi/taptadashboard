@@ -1,17 +1,17 @@
 package com.example.taptadashboard.payment.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptadashboard.R
 import com.example.taptadashboard.databinding.RecyclePriceRecommendationItemBinding
+import com.example.taptadashboard.utils.formatter
+import java.util.Locale
 
 class PriceRecommendationAdapter(private val priceList: ArrayList<Long>): RecyclerView.Adapter<PriceRecommendationAdapter.MyViewHolder>() {
     class MyViewHolder(private val itemBinding: RecyclePriceRecommendationItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(priceText: String) {
-            itemBinding.itemPriceText.text = priceText
+        fun bind(priceText: Long) {
+            itemBinding.itemPriceText.text = itemView.context.getString(R.string.price_text, formatter(priceText, Locale.US))
         }
     }
 
@@ -21,7 +21,7 @@ class PriceRecommendationAdapter(private val priceList: ArrayList<Long>): Recycl
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(priceList[position].toString())
+        holder.bind(priceList[position])
     }
 
     override fun getItemCount(): Int {

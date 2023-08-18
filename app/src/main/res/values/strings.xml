@@ -5,4 +5,5 @@
     <string name="icon_cart">Cart Icon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="next">Next</string>
+    <string name="price_text">%1$s VND</string>
 </resources>

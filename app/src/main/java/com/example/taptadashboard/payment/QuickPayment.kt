@@ -5,18 +5,18 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taptadashboard.R
 import com.example.taptadashboard.databinding.FragmentQuickPaymentBinding
 import com.example.taptadashboard.payment.adapter.PriceRecommendationAdapter
 import com.example.taptadashboard.payment.viewmodel.QuickPaymentViewModel
+import com.example.taptadashboard.utils.formatter
+import java.util.Locale
 
 class QuickPayment : Fragment() {
 
@@ -33,9 +33,9 @@ class QuickPayment : Fragment() {
         binding.quickPayment = viewModel
         viewModel.currentAmountLiveData.observe(viewLifecycleOwner) { newAmount ->
             if (newAmount == "") {
-                binding.itemPrice.text = "0 VND"
+                binding.itemPrice.text = getString(R.string.price_text, formatter(0, Locale.US))
             } else {
-                binding.itemPrice.text = newAmount + " VND"
+                binding.itemPrice.text = getString(R.string.price_text, formatter(newAmount.toLong(), Locale.US))
             }
         }
 
@@ -43,9 +43,9 @@ class QuickPayment : Fragment() {
             vibe()
         }
 
-        binding.quickTotalPrice.text = viewModel.totalAmount.toString() + " VND"
+        binding.quickTotalPrice.text = getString(R.string.price_text, formatter(viewModel.totalAmount, Locale.US))
         viewModel.currentTotalLiveData.observe(viewLifecycleOwner) { newAmount ->
-            binding.quickTotalPrice.text = newAmount.toString() + " VND"
+            binding.quickTotalPrice.text =  getString(R.string.price_text, formatter(newAmount, Locale.US))
         }
 
         // recommended price list
