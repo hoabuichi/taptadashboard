@@ -16,4 +16,6 @@
     <color name="text_black">#333333</color>
     <color name="border_gray">#DEDEDE</color>
     <color name="red_basic">#F4261A</color>
+    <color name="text_neutral_black">#151522</color>
+    <color name="text_purple_black">#343D63</color>
 </resources>
